@@ -12,9 +12,7 @@ RUN apt-get update -y && apt-get upgrade -y \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/* /root/.cache && mkdir -p /etc/wal-g.d/env && chown postgres /etc/wal-g.d/env
-RUN 
-    curl -L https://github.com/wal-g/wal-g/releases/download/v0.2.15/wal-g.linux-amd64.tar.gz | tar -xz -C /usr/local/bin \
-    && ln -s /usr/local/bin/wal-g /usr/local/bin/wal-e 
+RUN curl -L https://github.com/wal-g/wal-g/releases/download/v0.2.15/wal-g.linux-amd64.tar.gz | tar -xz -C /usr/local/bin
 WORKDIR /home/postgres
 COPY start.sh /start.sh
 RUN chown postgres /start.sh && chmod +x /start.sh
